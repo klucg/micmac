@@ -124,13 +124,13 @@ namespace  NS_MMVII_FormalDerivative
 */
 
 /// This function is required if we want to have same operation on numbers double and formulas
-double square(const double & aV)  {return aV*aV;}
-double square(const float & aV)  {return aV*aV;}
-double cube(const double & aV)  {return aV*aV*aV;}
-double cube(const float & aV)  {return aV*aV*aV;}
+static inline double square(const double & aV)  {return aV*aV;}
+static inline double square(const float & aV)  {return aV*aV;}
+static inline double cube(const double & aV)  {return aV*aV*aV;}
+static inline double cube(const float & aV)  {return aV*aV*aV;}
 // static double square(const float & aV)  {return aV*aV;}
 
-void Error(const std::string & aMes,const std::string & aExplanation)
+static inline void Error(const std::string & aMes,const std::string & aExplanation)
 {
     std::cout << "In MMVII_FormalDerivative a fatal error" << "\n";
     std::cout << "  Likely Source   ["<< aExplanation << "\n";
@@ -138,11 +138,11 @@ void Error(const std::string & aMes,const std::string & aExplanation)
     assert(false);
 }
 
-void InternalError(const std::string & aMes)
+static inline void InternalError(const std::string & aMes)
 {
    Error(aMes,"Internal Error of the Library");
 }
-void UserSError(const std::string & aMes)
+static inline void UserSError(const std::string & aMes)
 {
    Error(aMes,"Probable error on user's side due to unapropriate usage of the library");
 }
