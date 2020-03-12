@@ -429,7 +429,7 @@ template <class TypeElem> class cImplemF  : public cMemCheck
 {
     public :
       // See eigen documentation,  this macro is mandatory for alignment reason
-       EIGEN_MAKE_ALIGNED_OPERATOR_NEW
+        EIGEN_ALLIGNMENT_IN_MMVII
 
        typedef TypeElem                        tElem;
        typedef cCoordinatorF<TypeElem>         tCoordF;
