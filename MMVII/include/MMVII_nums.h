@@ -1,6 +1,12 @@
 #ifndef  _MMVII_nums_H_
 #define  _MMVII_nums_H_
 
+#include <boost/optional.hpp>
+#include <boost/math/special_functions/fpclassify.hpp>
+
+#include "MMVII_enums.h"
+#include "MMVII_Error.h"
+
 namespace MMVII
 {
 

@@ -1,6 +1,5 @@
-#include "include/MMVII_all.h"
-// #include "include/MMVII_2Include_Serial_Tpl.h"
-
+#include "cMMVII_Appli.h"
+#include "MMVII_Images.h"
 
 /** \file cMMVII_CalcSet.cpp
     \brief Command for set calculation

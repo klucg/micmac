@@ -1,6 +1,21 @@
 #ifndef  _cMMVII_Appli_H_
 #define  _cMMVII_Appli_H_
 
+#include <vector>
+#include <string>
+#include <memory>
+#include <map>
+#include <chrono>
+#include <list>
+#include <iostream>
+
+#include "MMVII_util.h"
+#include "MMVII_enums.h"
+#include "MMVII_memory.h"
+#include "MMVII_Ptxd.h"
+#include "MMVII_util_tpl.h"
+#include "MMVII_Stringifier.h"
+
 namespace MMVII
 {
 
@@ -267,11 +282,6 @@ class cParamCallSys
 
 
      // ========================== cMMVII_Appli  ==================
-
-cMultipleOfs& StdOut(); /// Call the ostream of cMMVII_Appli if exist (else std::cout)
-cMultipleOfs& HelpOut();
-cMultipleOfs& ErrOut();
-
 
 /// Mother class of all appli
 

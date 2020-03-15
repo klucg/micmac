@@ -1,6 +1,5 @@
-#include "include/MMVII_all.h"
-#include <algorithm>
-
+#include "cMMVII_Appli.h"
+#include "MMVII_DeclareAllCmd.h"
 
 namespace MMVII
 {

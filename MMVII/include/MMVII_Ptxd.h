@@ -1,5 +1,11 @@
 #ifndef  _MMVII_Ptxd_H_
 #define  _MMVII_Ptxd_H_
+
+#include <cmath>
+#include <ostream>
+
+#include "MMVII_nums.h"
+
 namespace MMVII
 {
 

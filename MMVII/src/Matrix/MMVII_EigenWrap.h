@@ -1,8 +1,8 @@
 #ifndef  _MMVII_EigenWrap_H_
 #define  _MMVII_EigenWrap_H_
 
-#include "ExternalInclude/Eigen/Dense"
-// #include "ExternalInclude/Eigen/Core"
+#include "MMVII_Matrix.h"
+#include "../ExternalInclude/Eigen/Dense"
 
 
 using namespace Eigen;

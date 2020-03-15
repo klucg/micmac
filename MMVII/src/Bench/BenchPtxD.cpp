@@ -1,4 +1,5 @@
-#include "include/MMVII_all.h"
+#include "MMVII_Images.h"
+#include "cMMVII_Appli.h"
 
 namespace MMVII
 {

@@ -10,7 +10,7 @@ MMV2_INSTALL_PATH=${dir ${abspath ${MMV2_EXE}}}
 
 # =========== Includes & Libraries
 MMV1_INCLUDES=-I ${MMV1_DIR}/include -I${MMV1_DIR}
-MMV2_INCLUDES=-I ${MMV2_DIR}
+MMV2_INCLUDES=-I ${MMV2_DIR}/include
 
 MMV2_LIBNAME=P2007
 MMV2_LIB=${MMV2_BINDIR}/lib${MMV2_LIBNAME}.a

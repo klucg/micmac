@@ -1,4 +1,6 @@
-#include "include/MMVII_all.h"
+#include "MMVII_Stringifier.h"
+#include "MMVII_Ptxd.h"
+#include "MMVII_util.h"
 
 namespace MMVII
 {

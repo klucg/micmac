@@ -1,6 +1,14 @@
 #ifndef  _MMVII_Stringifier_H_
 #define  _MMVII_Stringifier_H_
 
+#include <string>
+#include <memory>
+#include <vector>
+
+#include "MMVII_AllClassDeclare.h"
+#include "MMVII_enums.h"
+#include "MMVII_memory.h"
+
 namespace MMVII
 {
 

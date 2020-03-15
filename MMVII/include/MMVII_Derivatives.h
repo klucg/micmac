@@ -1,7 +1,7 @@
 #ifndef  _MMVII_Derivatives_H_
 #define  _MMVII_Derivatives_H_
 
-#include "ExternalInclude/Eigen/Dense"
+#include "../ExternalInclude/Eigen/Dense"
 
 namespace MMVII
 {

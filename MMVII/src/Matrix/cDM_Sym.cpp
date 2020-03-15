@@ -1,5 +1,4 @@
-#include "include/MMVII_all.h"
-
+#include "MMVII_Matrix.h"
 
 namespace MMVII
 {

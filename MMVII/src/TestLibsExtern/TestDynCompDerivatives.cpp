@@ -1,6 +1,6 @@
-#include "include/MMVII_all.h"
-#include "include/MMVII_Derivatives.h"
-#include "include/MMVII_FormalDerivatives.h"
+#include "cMMVII_Appli.h"
+#include "MMVII_Derivatives.h"
+#include "MMVII_FormalDerivatives.h"
 
 #include "ceres/jet.h"
 

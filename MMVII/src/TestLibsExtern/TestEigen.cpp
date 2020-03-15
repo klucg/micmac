@@ -1,4 +1,5 @@
-#include "include/MMVII_all.h"
+#include "cMMVII_Appli.h"
+#include "MMVII_Images.h"
 /** \file TestEigen.cpp
     \brief File to test eigen library
 
@@ -9,14 +10,14 @@ class  	Eigen::SimplicialLDLT< _MatrixType, _UpLo, _Ordering >
  
 class  	Eigen::SimplicialLLT< _Matri
 */
-#include "ExternalInclude/Eigen/Dense"
-#include "ExternalInclude/Eigen/Core"
-#include "ExternalInclude/Eigen/Eigenvalues" 
-#include "ExternalInclude/Eigen/SparseCholesky"
+#include "../ExternalInclude/Eigen/Dense"
+#include "../ExternalInclude/Eigen/Core"
+#include "../ExternalInclude/Eigen/Eigenvalues"
+#include "../ExternalInclude/Eigen/SparseCholesky"
 
 // #include "External/eigen-git-mirror-master/unsupported/Eigen/src/SparseExtra/MarketIO.h"
-#include "ExternalInclude/MarketIO.h"
-#include "ExternalInclude/Eigen/LU"
+#include "../ExternalInclude/MarketIO.h"
+#include "../ExternalInclude/Eigen/LU"
 
 
 using Eigen::MatrixXd;

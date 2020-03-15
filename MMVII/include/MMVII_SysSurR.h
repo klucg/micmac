@@ -1,5 +1,8 @@
 #ifndef  _MMVII_SysSurR_H_
 #define  _MMVII_SysSurR_H_
+
+#include "MMVII_Matrix.h"
+
 namespace MMVII
 {
 

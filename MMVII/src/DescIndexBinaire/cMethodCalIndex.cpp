@@ -1,9 +1,5 @@
-#include "include/MMVII_all.h"
 #include "IndexBinaire.h"
-#include "include/MMVII_Tpl_Images.h"
-
-// #include "include/MMVII_2Include_Serial_Tpl.h"
-// #include<map>
+#include "MMVII_Tpl_Images.h"
 
 /** \file cMethodCalIndex.cpp
     \brief Contains class for comuting one bit of info

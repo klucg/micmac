@@ -1,5 +1,8 @@
-#include "include/MMVII_all.h"
 #include <boost/math/special_functions/fpclassify.hpp>
+
+#include "MMVII_Linear2DFiltering.h"
+#include "MMVII_Matrix.h"
+#include "MMVII_util.h"
 
 namespace MMVII
 {

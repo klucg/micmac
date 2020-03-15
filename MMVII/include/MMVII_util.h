@@ -1,6 +1,13 @@
 #ifndef  _MMVII_Util_H_
 #define  _MMVII_Util_H_
 
+#include <fstream>
+
+#include "MMVII_memory.h"
+#include "MMVII_Error.h"
+#include "MMVII_AllClassDeclare.h"
+#include "MMVII_nums.h"
+
 namespace MMVII
 {
 
@@ -220,6 +227,10 @@ class cMultipleOfs  : public  std::ostream
 /// For now I have problem with cMultipleOfs << std::endl , tag end of line to come back on it later
 #define ENDL "\n"
 
+cMultipleOfs& StdOut(); /// Call the ostream of cMMVII_Appli if exist (else std::cout)
+cMultipleOfs& HelpOut();
+cMultipleOfs& ErrOut();
+
 
 /** Probably job could be done with boost, but I am not sure I could handle
     precisely output format
@@ -245,6 +256,7 @@ class cMMVII_Duration
         tREAL8 mFrac;   // in second
 };
 void Bench_Duration();
+
 
 
 };

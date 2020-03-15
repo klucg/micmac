@@ -1,5 +1,7 @@
-#include "include/MMVII_all.h"
-#include <cmath>
+#include <vector>
+
+#include "MMVII_Error.h"
+#include "MMVII_util_tpl.h"
 
 /** \file BenchSupport.cpp
     \brief Support librairy bench

@@ -1,5 +1,12 @@
 #ifndef  _MMVII_Images_H_
 #define  _MMVII_Images_H_
+
+#include <memory>
+
+#include "MMVII_AllClassDeclare.h"
+#include "MMVII_memory.h"
+#include "MMVII_Ptxd.h"
+
 namespace MMVII
 {
 
