@@ -1,6 +1,4 @@
-#include "include/MMVII_all.h"
-
-// #include <Eigen/Dense>
+#include "MMVII_Images.h"
 
 namespace MMVII
 {

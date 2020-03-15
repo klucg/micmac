@@ -1,8 +1,14 @@
-#include "include/MMVII_all.h"
 #include <boost/algorithm/cxx14/equal.hpp>
 // #include <boost/container_hash/hash.hpp>
 // #include <boost/hash.hpp>
 #include <boost/functional/hash.hpp>
+
+#include "MMVII_Stringifier.h"
+#include "MMVII_DeclareCste.h"
+#include "MMVII_util.h"
+#include "MMVII_util_tpl.h"
+#include "MMVII_AllClassDeclare.h"
+#include "MMVII_Ptxd.h"
 
 
 /** \file Serial.cpp

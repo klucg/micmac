@@ -1,5 +1,6 @@
-#include "include/MMVII_all.h"
-#include "include/MMVII_Derivatives.h"
+#include "cMMVII_Appli.h"
+#include "MMVII_Derivatives.h"
+#include "MMVII_Bench.h"
 
 extern void   BenchFormalDer();
 

@@ -1,8 +1,12 @@
-#include "include/MMVII_all.h"
-#include "include/MMVII_Tpl_Images.h"
-#include "include/V1VII.h"
+#include "V1VII.h"
 
-
+#include "cMMVII_Appli.h"
+#include "MMVII_Linear2DFiltering.h"
+#include "MMVII_NonLinear2DFiltering.h"
+#include "MMVII_AimeTieP.h"
+#include "MMVII_DeclareCste.h"
+#include "MMVII_ImageInfoExtract.h"
+#include "MMVII_Tpl_Images.h"
 
 namespace MMVII
 {

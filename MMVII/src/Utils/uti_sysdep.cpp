@@ -1,4 +1,7 @@
-#include "include/MMVII_all.h"
+#include <string>
+
+#include "MMVII_Sys.h"
+#include "MMVII_Error.h"
 
 namespace MMVII
 {

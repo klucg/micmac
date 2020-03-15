@@ -1,5 +1,10 @@
-#include "include/MMVII_all.h"
 #include <random>
+#include <memory>
+
+#include "cMMVII_Appli.h"
+#include "MMVII_nums.h"
+#include "MMVII_util.h"
+#include "MMVII_Ptxd.h"
 
 /** \file uti_rand.cpp
     \brief Implementation of random generator

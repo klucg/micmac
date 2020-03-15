@@ -1,5 +1,5 @@
-#include "include/MMVII_all.h"
-
+#include "MMVII_Images.h"
+#include "MMVII_Linear2DFiltering.h"
 
 namespace MMVII
 {

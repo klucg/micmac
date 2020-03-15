@@ -1,5 +1,12 @@
 #ifndef  _MMVII_ImageInfoExtract_H_
 #define  _MMVII_ImageInfoExtract_H_
+
+#include <boost/optional.hpp>
+
+#include "MMVII_Images.h"
+#include "MMVII_SysSurR.h"
+#include "MMVII_Matrix.h"
+
 namespace MMVII
 {
 

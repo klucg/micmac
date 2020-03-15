@@ -1,7 +1,5 @@
-#include "include/MMVII_all.h"
-
-
 #include "MMVII_EigenWrap.h"
+#include "MMVII_util.h"
 
 
 using namespace Eigen;

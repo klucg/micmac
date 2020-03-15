@@ -1,6 +1,12 @@
 #ifndef  _MMVII_Util_TPL_H_
 #define  _MMVII_Util_TPL_H_
 
+#include <boost/optional.hpp>
+#include <memory>
+
+#include "MMVII_AllClassDeclare.h"
+#include "MMVII_enums.h"
+
 namespace MMVII
 {
 

@@ -2,7 +2,9 @@
 #define _V1V2_H_
 
 #include "StdAfx.h"
-#include "include/MMVII_all.h"
+#include "MMVII_Ptxd.h"
+#include "MMVII_Images.h"
+//#include "MMVII_all.h"
 
 
 namespace MMVII

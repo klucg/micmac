@@ -1,6 +1,10 @@
 #ifndef  _MMVII_Class4Dench_H_
 #define  _MMVII_Class4Dench_H_
 
+#include <list>
+#include "MMVII_Stringifier.h"
+#include "MMVII_Ptxd.h"
+
 namespace MMVII
 {
 

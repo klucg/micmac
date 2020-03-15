@@ -1,6 +1,9 @@
 #ifndef  _MMVII_AllClassDeclare_H_
 #define  _MMVII_AllClassDeclare_H_
 
+#include <string>
+#include <utility>
+
 namespace MMVII
 {
 

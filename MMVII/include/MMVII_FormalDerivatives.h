@@ -6,7 +6,7 @@
 
 
 #if WITH_EIGEN
-#include "ExternalInclude/Eigen/Dense"  // TODO => replace with standard eigen file
+#include "../ExternalInclude/Eigen/Dense"  // TODO => replace with standard eigen file
 #define EIGEN_ALLIGNMENT_IN_MMVII EIGEN_MAKE_ALIGNED_OPERATOR_NEW
 #else
 #define EIGEN_ALLIGNMENT_IN_MMVII 

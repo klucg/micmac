@@ -1,5 +1,8 @@
-#include "include/MMVII_all.h"
-#include "include/MMVII_Tpl_Images.h"
+#include "MMVII_Images.h"
+#include "MMVII_Tpl_Images.h"
+#include "MMVII_DeclareCste.h"
+#include "MMVII_Linear2DFiltering.h"
+
 
 namespace MMVII
 {

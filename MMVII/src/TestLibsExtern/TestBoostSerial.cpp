@@ -1,4 +1,5 @@
-#include "include/MMVII_all.h"
+#include "cMMVII_Appli.h"
+
 /** \file TestBoostSerial.cpp
     \brief File to test boost serialization service
 

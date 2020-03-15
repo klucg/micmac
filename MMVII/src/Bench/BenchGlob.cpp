@@ -1,5 +1,5 @@
-#include "include/MMVII_all.h"
-#include <cmath>
+#include "cMMVII_Appli.h"
+#include "MMVII_Bench.h"
 
 /** \file BenchGlob.cpp
     \brief Main bench

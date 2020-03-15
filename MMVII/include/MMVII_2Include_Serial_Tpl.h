@@ -1,6 +1,16 @@
 #ifndef  _MMVII_Serial_Tpl2Inc_H_
 #define  _MMVII_Serial_Tpl2Inc_H_
 
+#include <vector>
+#include <string>
+#include <list>
+#include <boost/optional.hpp>
+
+#include "MMVII_Stringifier.h"
+#include "MMVII_Ptxd.h"
+#include "MMVII_DeclareCste.h"
+#include "MMVII_util.h"
+
 /** \file MMVII_2Include_Serial_Tpl.h
     \brief Contains template definition  for serialisation
 

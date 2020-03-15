@@ -1,5 +1,7 @@
 #ifndef _cAPPLI_MATCH_TIEP_H_ 
 #define _cAPPLI_MATCH_TIEP_H_
+#include "cMMVII_Appli.h"
+#include "MMVII_AimeTieP.h"
 
 namespace MMVII
 {

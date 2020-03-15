@@ -1,6 +1,10 @@
 #ifndef  _MMVII_MEMORY_H_
 #define  _MMVII_MEMORY_H_
 
+#include <memory.h>
+
+#include "MMVII_Error.h"
+
 namespace MMVII
 {
 

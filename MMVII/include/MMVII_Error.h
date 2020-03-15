@@ -1,6 +1,9 @@
 #ifndef  _MMVII_MMError_H_
 #define  _MMVII_MMError_H_
 
+#include <string>
+#include "MMVII_enums.h"
+
 namespace MMVII
 {
 

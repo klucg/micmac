@@ -1,5 +1,9 @@
-#include "include/MMVII_all.h"
 #include <map>
+
+#include "MMVII_Stringifier.h"
+#include "MMVII_util.h"
+#include "MMVII_DeclareCste.h"
+#include "MMVII_util_tpl.h"
 
 /** \file uti_e2string.cpp
     \brief Implementation enum <=> string conversion

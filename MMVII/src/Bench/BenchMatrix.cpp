@@ -1,5 +1,8 @@
-#include "include/MMVII_all.h"
-#include "include/MMVII_Tpl_Images.h"
+#include "cMMVII_Appli.h"
+#include "MMVII_Matrix.h"
+#include "MMVII_Ptxd.h"
+#include "MMVII_SysSurR.h"
+#include "MMVII_Tpl_Images.h"
 
 
 

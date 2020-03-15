@@ -1,5 +1,13 @@
 #ifndef  _MMVII_Matrix_H_
 #define  _MMVII_Matrix_H_
+
+#include <ostream>
+#include <memory>
+
+#include "MMVII_memory.h"
+#include "MMVII_Images.h"
+
+
 namespace MMVII
 {
 

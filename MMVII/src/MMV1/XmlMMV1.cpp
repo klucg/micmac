@@ -1,4 +1,4 @@
-#include "include/V1VII.h"
+#include "V1VII.h"
 
 
 #include "src/uti_image/NewRechPH/cParamNewRechPH.h"
@@ -9,6 +9,9 @@
 #include "include/algo_geom/qdt_implem.h"
 #include "include/ext_stl/heap.h"
 
+#include "cMMVII_Appli.h"
+#include "MMVII_AimeTieP.h"
+#include "MMVII_ImageInfoExtract.h"
 
 namespace MMVII
 {

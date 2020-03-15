@@ -1,6 +1,7 @@
-#include "include/MMVII_all.h"
-#include "include/MMVII_2Include_Serial_Tpl.h"
-#include<map>
+#include <map>
+
+#include "cMMVII_Appli.h"
+#include "MMVII_2Include_Serial_Tpl.h"
 
 /** \file cMMVII_Walkman.cpp
     \brief Command for my music random selection ;-)
