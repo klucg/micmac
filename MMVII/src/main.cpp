@@ -1,8 +1,10 @@
 #include "../include/MMVII_all.h"
 
-#include "ResultInstall/ResultInstall.cpp"
 using namespace MMVII;
 
+namespace MMVII {
+	const std::string DirBin2007= MMVII_INSTALL_PATH ;
+}
 
 int main(int argc, char ** argv)
 {
