@@ -44,8 +44,6 @@ clean:
 # =========== Build Lib
 SRCS=${wildcard ${MMV2_SRCDIR}/*/*.cpp}
 OBJS=${SRCS:.cpp=.o}
-OBJS:=${filter-out ${MMV2_SRCDIR}/BinaireInstall/%,${OBJS}}
-OBJS:=${filter-out ${MMV2_SRCDIR}/ResultInstall/%,${OBJS}}
 DEPS=${join ${addsuffix ., ${dir ${OBJS}}}, ${notdir ${OBJS:.o=.d}}}
 
 %.o: %.cpp Makefile
@@ -59,13 +57,10 @@ ${MMV2_LIB}: ${OBJS}
 # ========== Build Main
 MAIN_SRC=${MMV2_SRCDIR}/main.cpp
 MAIN_OBJ=${MMV2_SRCDIR}/main.o
-MMV2_RESULT_INSTALL=${MMV2_SRCDIR}/ResultInstall/ResultInstall.cpp
 
 
 ${MMV2_EXE}: ${MAIN_SRC} ${MMV2_LIB} ${MMV1_LIBS}
-	mkdir -p ${dir ${MMV2_RESULT_INSTALL}}
-	echo '#include <string>\nnamespace MMVII {\nconst std::string DirBin2007="${MMV2_INSTALL_PATH}";\n};\n' > ${MMV2_RESULT_INSTALL}
-	${CXX} -c  ${CXXFLAGS} ${MAIN_SRC} -o ${MAIN_OBJ}
+	$(CXX) -c $(CXXFLAGS) $(MAIN_SRC) -o $(MAIN_OBJ) -D MMVII_INSTALL_PATH='"$(MMV2_INSTALL_PATH)"'
 	${CXX} ${LDFLAGS} ${MAIN_OBJ} ${MMV2_LIB} ${MMV1_LIBS} ${EXT_LIBS}  -o $@
 
 
