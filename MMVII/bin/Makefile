@@ -7,7 +7,6 @@ MMV2_SRCDIR=${MMV2_DIR}/src
 MMV2_EXE=${MMV2_BINDIR}/MMVII
 MMV2_INSTALL_PATH=${dir ${abspath ${MMV2_EXE}}}
 
-
 # =========== Includes & Libraries
 MMV1_INCLUDES=-I ${MMV1_DIR}/include -I${MMV1_DIR}
 MMV2_INCLUDES=-I ${MMV2_DIR}/include
@@ -23,8 +22,29 @@ EXT_LIBS=-lpthread -lX11 ${BOOST_LIBS} ${QT_LIBS}
 # =========== Compiler & Flags
 CXX=g++
 LD=g++
-CXXFLAGS= "-std=c++14" "-Wall"  "-Werror" "-O4" "-march=native" ${MMV2_INCLUDES} ${MMV1_INCLUDES}
-LDFLAGS=
+CXXFLAGS:=-std=c++14 -Wall -Werror -O4 -march=native ${MMV2_INCLUDES} ${MMV1_INCLUDES}
+LDFLAGS:=
+
+
+# ============ Targets
+all: ${MMV2_EXE}
+
+clean:
+	@echo "* Cleaning all "
+	${OUT}rm -f ${OBJS} ${DEPS} ${MMV2_EXE} ${MMV2_LIB}
+
+
+# =========== Verbosity
+ifeq (${V},2)
+  OUT=
+  OUT2=
+else ifeq (${V},1)
+  OUT=
+  OUT2=@
+else
+  OUT=@
+  OUT2=@
+endif
 
 
 # ===========  Use ccache if found
@@ -34,24 +54,19 @@ ifneq (,${CCACHE})
 endif
 
 
-# ============ Targets
-all: ${MMV2_EXE}
-
-clean:
-	rm -f ${OBJS} ${DEPS} ${MMV2_EXE} ${MMV2_LIB}
-
-
 # =========== Build Lib
 SRCS=${wildcard ${MMV2_SRCDIR}/*/*.cpp}
 OBJS=${SRCS:.cpp=.o}
 DEPS=${join ${addsuffix ., ${dir ${OBJS}}}, ${notdir ${OBJS:.o=.d}}}
 
-%.o: %.cpp Makefile
-	${CXX} -c  ${CXXFLAGS} $< -o $@
+%.o: %.cpp
+	@echo "* Compiling ${notdir $<} "
+	${OUT}${CXX} -c  ${CXXFLAGS} $< -o $@
 
 ${MMV2_LIB}: ${OBJS}
-	rm -f $@
-	ar crs $@ $^
+	@echo "* Making ${notdir $@} "
+	${OUT}rm -f $@
+	${OUT}ar crs $@ $^
 
 
 # ========== Build Main
@@ -60,13 +75,16 @@ MAIN_OBJ=${MMV2_SRCDIR}/main.o
 
 
 ${MMV2_EXE}: ${MAIN_SRC} ${MMV2_LIB} ${MMV1_LIBS}
-	$(CXX) -c $(CXXFLAGS) $(MAIN_SRC) -o $(MAIN_OBJ) -D MMVII_INSTALL_PATH='"$(MMV2_INSTALL_PATH)"'
-	${CXX} ${LDFLAGS} ${MAIN_OBJ} ${MMV2_LIB} ${MMV1_LIBS} ${EXT_LIBS}  -o $@
+	@echo "* Compiling ${notdir ${MAIN_SRC}} "
+	${OUT}$(CXX) -c $(CXXFLAGS) $(MAIN_SRC) -o $(MAIN_OBJ) -D MMVII_INSTALL_PATH='"$(MMV2_INSTALL_PATH)"'
+	@echo "* Linking ${notdir $@} "
+	${OUT}${CXX} ${LDFLAGS} ${MAIN_OBJ} ${MMV2_LIB} ${MMV1_LIBS} ${EXT_LIBS}  -o $@
 
 
 # =========== Auto dependancies
 .%.d: %.cpp
-	@set -e; rm -f $@; \
+	@echo "* Dependancies for ${notdir $<}"
+	${OUT2}set -e; rm -f $@; \
 	${CXX} -MM -MP -MT '${patsubst %.cpp,%.o,$<} $@' -MF $@ ${CXXFLAGS} $<   2>/dev/null
 
 ifneq (${MAKECMDGOALS},clean)
