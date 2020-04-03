@@ -244,8 +244,8 @@ cFormula<TypeElem> operator +
                               ) 
 {
      // Use the fact that 0 is neutral element to simplify
-     if (aF1->IsCste0()) return aF2;
-     if (aF2->IsCste0()) return aF1;
+     if (aF1->IsCste(0)) return aF2;
+     if (aF2->IsCste(0)) return aF1;
 
      // Use commutativity of + to have a unique representation
      if (aF1->Name() > aF2->Name()) 
@@ -262,8 +262,8 @@ cFormula<TypeElem> operator -
                               ) 
 {
      // Use the fact that 0 is neutral element to simplify
-     if (aF1->IsCste0()) return -aF2;
-     if (aF2->IsCste0()) return aF1;
+     if (aF1->IsCste(0)) return -aF2;
+     if (aF2->IsCste(0)) return aF1;
 
      return cGenOperatorBinaire<cSubF<TypeElem> >::Generate(aF1,aF2,"-");
 }
@@ -276,13 +276,16 @@ cFormula<TypeElem> operator *
                               ) 
 {
      // Use the fact that 1 is neutral element to simplify
-     if (aF1->IsCste1()) return aF2;
-     if (aF2->IsCste1()) return aF1;
+     if (aF1->IsCste(1)) return aF2;
+     if (aF2->IsCste(1)) return aF1;
 
      // Use the fact that 0 is absorbant element to simplify
-     if (aF1->IsCste0()) return aF1;
-     if (aF2->IsCste0()) return aF2;
+     if (aF1->IsCste(0)) return aF1;
+     if (aF2->IsCste(0)) return aF2;
 
+     // Remove a multiplication
+     if (aF1->IsCste(-1)) return -aF2;
+     if (aF2->IsCste(-1)) return -aF1;
 
      // Use commutativity of + to have a unique representation
      if (aF1->Name() > aF2->Name()) 
@@ -298,8 +301,10 @@ cFormula<TypeElem> operator /
                                     const cFormula<TypeElem> & aF2
                               ) 
 {
-     if (aF1->IsCste0()) return aF1;  // 0/F2 -> 0
-     if (aF2->IsCste1()) return aF1;  // F1/1 -> F1
+     if (aF1->IsCste(0)) return aF1;  // 0/F2 -> 0
+     if (aF2->IsCste(1)) return aF1;  // F1/1 -> F1
+
+     if (aF2->IsCste(-1)) return -aF1; // F1/-1 -> -F1
 
      return cGenOperatorBinaire<cDivF<TypeElem> >::Generate(aF1,aF2,"/");
 }
@@ -311,6 +316,8 @@ cFormula<TypeElem>   pow
                                     const cFormula<TypeElem> & aF2
                               ) 
 {
+    if (aF1->IsCste(1)) return aF1;  // 1^N -> 1
+    if (aF2->IsCste(1)) return aF1;  // F1^1 -> F1
      return cGenOperatorBinaire<cPowF<TypeElem> >::Generate(aF1,aF2,"^");
 }
 

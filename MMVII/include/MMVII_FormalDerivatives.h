@@ -437,8 +437,7 @@ template <class TypeElem> class cImplemF  : public cMemCheck
        typedef typename tCoordF::tFormula      tFormula;
 
        //----------- For derivation and reduction--------------
-       virtual bool  IsCste0() const {return false;} ///< To redefine in constant func, Used for simplification in "/ * + -"
-       virtual bool  IsCste1() const {return false;} ///< To redefine in constant func, Used for simplification in "/ *"
+       virtual bool  IsCste(TypeElem val) const {return false;} ///< To redefine in constant func, Used for simplification in "/ * + -"
        virtual tFormula Derivate(int aK) const  = 0;  ///< Compute the formula of it's derivative to Kth unknown
 
        // --------------  For Computation -------------------------
@@ -452,6 +451,8 @@ template <class TypeElem> class cImplemF  : public cMemCheck
        const std::string  & Name() const {return mName;}  ///< Standard accessor
        tCoordF *  CoordF() const {return mCoordF;}   ///< Standard accesor
        int  NumGlob() const {return mNumGlob;}  ///< Standard accessor
+       std::string  formName() const {return "F" + std::to_string(NumGlob());}
+
      // ---------- Acces to Buf data ---------------
        void SetBuf(size_t anIndex,const TypeElem & aVal) {mBuf.at(anIndex) = aVal;}
        const TypeElem &  GetBuf(size_t anIndex) {return mBuf.at(anIndex);}
@@ -529,13 +530,13 @@ template <class TypeElem> class cFormula
            /// Generate the unique indentifier of a binary expression
        std::string NameFormulaBin(const std::string & aNameOper,const tFormula & aF2) const
        {
-           return "F"+ std::to_string((*this)->NumGlob()) + aNameOper + "F"  + std::to_string(aF2->NumGlob());
+           return (*this)->formName() + aNameOper + aF2->formName();
        }
 
            /// Generate the unique indentifier of a unary expression, Aux is used for add parameter like pow(F,Cste)
        std::string NameFormulaUn(const std::string & aNameOper,const std::string& Aux) const
        {
-           std::string aRes =  aNameOper + " F"  + std::to_string((*this)->NumGlob()) ;
+           std::string aRes =  aNameOper + (*this)->formName();
            if (Aux!="") aRes += " " + Aux;
            return  aRes;
        }
@@ -633,8 +634,7 @@ template <class TypeElem> class cConstantF : public cAtomicF<TypeElem>
             typedef typename tCoordF::tBuf      tBuf;
             friend tCoordF;
 
-            bool  IsCste0() const override {return mVal==0.0;} ///< Here we know if we are constant 0
-            bool  IsCste1() const override {return mVal==1.0;} ///< Here we know if we are constant 1
+            bool  IsCste(double val) const override {return mVal==val;} ///< Here we know if we are a Val constant
             const TypeElem * ValCste() const override  {return &mVal;}
 
       protected  :
@@ -653,7 +653,7 @@ template <class TypeElem> class cConstantF : public cAtomicF<TypeElem>
 /* *************************************************** */
 /* *************************************************** */
 /* *                                                 * */
-/* *         cImplemF / cCoordinatorF                    * */
+/* *         cImplemF / cCoordinatorF                * */
 /* *        External Definition of methods           * */
 /* *                                                 * */
 /* *************************************************** */
@@ -842,6 +842,9 @@ void cCoordinatorF<TypeElem>::SetCurFormulas(const std::vector<tFormula> & aVF)
         aF->CalcRecursiveDepth(mVReachedF);
     } 
 
+    // Topological is useless in our cases.
+    // But we need above lines to fill mVReached
+#if 0
     // Use depth to have topological sort
     std::sort
     (
@@ -849,7 +852,7 @@ void cCoordinatorF<TypeElem>::SetCurFormulas(const std::vector<tFormula> & aVF)
         mVReachedF.end(),
         [](const tFormula & aF1,const tFormula &aF2) {return aF1->Depth() < aF2->Depth();}
     );
-
+#endif
     
     // Make Buf of Res to have right size
     for (auto & aLine : mBufLineRes)

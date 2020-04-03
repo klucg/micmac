@@ -268,6 +268,10 @@ inline cFormula<TypeElem> exp(const cFormula<TypeElem> & aF)
 template <class TypeElem> 
 inline cFormula<TypeElem>  operator - (const cFormula<TypeElem> & aF)
 {
+    const TypeElem * aC = aF->ValCste();
+    if (aC)
+        return aF->CoordF()->CsteOfVal(- *aC);  // help reduce other operation on '-0' too
+
     return cGenOperatorUnaire<cMin1F<TypeElem> >::Generate(aF,"-");
 }
 template <class TypeElem> 
