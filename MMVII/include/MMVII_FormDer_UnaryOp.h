@@ -52,6 +52,16 @@ template <class TypeElem> class cUnaryF : public cImplemF<TypeElem>
             }
 
       protected  :
+            virtual std::string genCodeNAddr() const override
+            {
+                return NameOperator() + "(" + mF->genCodeFormName() + ")";
+            }
+
+            virtual std::string genCodeDef() const override
+            {
+                return NameOperator() + "(" + mF->genCodeRef() + ")";
+            }
+
             std::vector<tFormula> Ref() const override{return std::vector<tFormula>{mF};}
             inline cUnaryF(tFormula aF,const std::string & aName) :
                  tImplemF (aF->CoordF(),aName),
@@ -76,7 +86,13 @@ template <class TypeElem> class cSquareF : public cUnaryF<TypeElem>
             { }
       private :
             std::string  NameOperator() const override {return "square";}
-            void ComputeBuf(int aK0,int aK1) override  
+            std::string genCodeNAddr() const override {
+                return  mF->genCodeFormName()  + " * " + mF->genCodeFormName();
+            }
+            std::string genCodeDef() const override {
+                return "(" + mF->genCodeRef() + " * " + mF->genCodeRef() + ")";
+            }
+            void ComputeBuf(int aK0,int aK1) override
             {
                 for (int aK=aK0 ; aK<aK1 ; aK++)
                     mDataBuf[aK] =  mDataF[aK] * mDataF[aK];
@@ -100,7 +116,16 @@ template <class TypeElem> class cCubeF : public cUnaryF<TypeElem>
             { }
       private :
             std::string  NameOperator() const override {return "cube";}
-            void ComputeBuf(int aK0,int aK1) override  
+            virtual std::string genCodeNAddr() const override {
+                  return mF->genCodeFormName() + " * " + mF->genCodeFormName() + " * " + mF->genCodeFormName();
+            }
+
+            virtual std::string genCodeDef() const override {
+                return "(" + mF->genCodeRef() + " * " + mF->genCodeRef() + " * " + mF->genCodeRef() + ")";
+            }
+
+            void ComputeBuf(int aK0,int aK1) override
+
             {
                 for (int aK=aK0 ; aK<aK1 ; aK++)
                     mDataBuf[aK] =  mDataF[aK] * mDataF[aK] * mDataF[aK];
@@ -201,6 +226,15 @@ template <class TypeElem> class cPowCste : public cUnaryF<TypeElem>
       private :
             std::string  NameOperator() const override {return "powc";}
             virtual std::string  PostName() const {return " " + std::to_string(mExp);}
+
+            virtual std::string genCodeNAddr() const override {
+                return "pow(" + mF->genCodeFormName() + "," + std::to_string(mExp) + ")";  // FIXME: verifier precision
+            }
+
+            virtual std::string genCodeDef() const override {
+                return "pow(" + mF->genCodeRef() + "," + std::to_string(mExp) + ")";  // FIXME: verifier precision
+            }
+
             void ComputeBuf(int aK0,int aK1) override  
             {
                 for (int aK=aK0 ; aK<aK1 ; aK++)
@@ -288,7 +322,7 @@ inline cFormula<TypeElem>  pow (const cFormula<TypeElem> & aF,const TypeElem& aV
     return cGenOperatorUnaire<cPowCste<TypeElem> >::Generate(aF,"powc",std::to_string(aVal));
 }
 
-}; //   NS_MMVII_FormalDerivative
+} //   NS_MMVII_FormalDerivative
 
 
 

@@ -41,6 +41,14 @@ template <class TypeElem> class cBinaryF : public cImplemF<TypeElem>
                return "("+ NameOperator() + " "+ mF1->InfixPPrint() + " " + mF2->InfixPPrint() + ")";
             }
       protected  :
+            virtual std::string genCodeNAddr() const override {
+                return "(" + mF1->genCodeFormName() + " " + NameOperator() +  " " + mF2->genCodeFormName() + ")";
+            }
+
+            virtual std::string genCodeDef() const override {
+                return "(" + mF1->genCodeRef() + " " + NameOperator() +  " " + mF2->genCodeRef() + ")";
+            }
+
             std::vector<tFormula> Ref() const override{return std::vector<tFormula>{mF1,mF2};}
             inline cBinaryF(tFormula aF1,tFormula aF2,const std::string & aName):
                  tImplemF (aF1->CoordF(),aName),
@@ -182,7 +190,16 @@ template <class TypeElem> class cPowF : public cBinaryF<TypeElem>
             { }
       private  :
             std::string  NameOperator() const override {return "^";}
-            void ComputeBuf(int aK0,int aK1) override  
+
+            virtual std::string genCodeNAddr() const override {
+                return "pow(" + mF1->genCodeFormName() + "," + mF2->genCodeFormName() + ")";
+            }
+
+            virtual std::string genCodeDef() const override {
+                return "pow(" + mF1->genCodeRef() + ","  + mF2->genCodeRef() + ")";
+            }
+
+            void ComputeBuf(int aK0,int aK1) override
             {
                 for (int aK=aK0 ; aK<aK1 ; aK++)
                      mDataBuf[aK] =  std::pow(mDataF1[aK],mDataF2[aK]);
@@ -379,7 +396,7 @@ template <class TypeElem> cFormula <TypeElem>  pow (const TypeElem & aV1,const c
 
 
 
-}; //   NS_MMVII_FormalDerivative
+} //   NS_MMVII_FormalDerivative
 
 
 #endif //  _MMVII_FormDer_BinaryOp_H_

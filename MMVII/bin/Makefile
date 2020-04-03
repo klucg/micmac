@@ -4,12 +4,13 @@ MMV1_LIBDIR=${MMV1_DIR}/lib
 MMV2_DIR=${MMV1_DIR}/MMVII
 MMV2_BINDIR=${MMV2_DIR}/bin
 MMV2_SRCDIR=${MMV2_DIR}/src
+MMV2_INCDIR=${MMV2_DIR}/include
 MMV2_EXE=${MMV2_BINDIR}/MMVII
 MMV2_INSTALL_PATH=${dir ${abspath ${MMV2_EXE}}}
 
 # =========== Includes & Libraries
 MMV1_INCLUDES=-I ${MMV1_DIR}/include -I${MMV1_DIR}
-MMV2_INCLUDES=-I ${MMV2_DIR}/include
+MMV2_INCLUDES=-I ${MMV2_INCDIR}
 
 MMV2_LIBNAME=P2007
 MMV2_LIB=${MMV2_BINDIR}/lib${MMV2_LIBNAME}.a
@@ -27,11 +28,15 @@ LDFLAGS:=-fopenmp
 
 
 # ============ Targets
-all: ${MMV2_EXE}
+MMV2_CODEGEN=${MMV2_BINDIR}/codegen
+
+.phony: all clean
+
+all: ${MMV2_CODEGEN} ${MMV2_EXE}
 
 clean:
 	@echo "* Cleaning all "
-	${OUT}rm -f ${OBJS} ${DEPS} ${MMV2_EXE} ${MMV2_LIB}
+	${OUT}rm -f ${OBJS} ${DEPS} ${MMV2_EXE} ${MMV2_CODEGEN} ${MMV2_LIB} ${MMV2_INCDIR}/codegen_*
 
 
 # =========== Verbosity
@@ -54,10 +59,23 @@ ifneq (,${CCACHE})
 endif
 
 
+# ========== Code Generator
+MMV2_CGEN_DIR=${MMV2_SRCDIR}/TestCodeGen
+MMV2_CGEN_OBJS=${MMV2_CGEN_DIR}/codegen.o
+
+${MMV2_CODEGEN}: ${MMV2_CGEN_OBJS}
+	@echo "* Linking ${notdir $@}"
+	${OUT}${CXX} ${LDFLAGS} $^  -o $@
+	@echo "* Generating Formulas code"
+	${OUT}( cd ${MMV2_INCDIR} && $@ )
+
+
 # =========== Build Lib
 SRCS=${wildcard ${MMV2_SRCDIR}/*/*.cpp}
-OBJS=${SRCS:.cpp=.o}
-DEPS=${join ${addsuffix ., ${dir ${OBJS}}}, ${notdir ${OBJS:.o=.d}}}
+OBJS=${filter-out ${MMV2_CGEN_OBJS}, ${SRCS:.cpp=.o}}
+DEPS=${join ${addsuffix ., ${dir ${SRCS}}}, ${notdir ${SRCS:.cpp=.d}}}
+
+${OBJS}: | ${MMV2_CODEGEN}
 
 %.o: %.cpp
 	@echo "* Compiling ${notdir $<} "
