@@ -22,8 +22,8 @@ EXT_LIBS=-lpthread -lX11 ${BOOST_LIBS} ${QT_LIBS}
 # =========== Compiler & Flags
 CXX=g++
 LD=g++
-CXXFLAGS:=-std=c++14 -Wall -Werror -O4 -march=native ${MMV2_INCLUDES} ${MMV1_INCLUDES}
-LDFLAGS:=
+CXXFLAGS:=-std=c++14 -Wall -Werror -O4 -fopenmp -march=native ${MMV2_INCLUDES} ${MMV1_INCLUDES}
+LDFLAGS:=-fopenmp
 
 
 # ============ Targets

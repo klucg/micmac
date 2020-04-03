@@ -109,6 +109,15 @@ class cMemCheck
 
 #endif            //========================================================== WITH_MMVI
 
+#ifdef _OPENMP
+#include <omp.h>
+#else
+typedef int omp_int_t;
+inline omp_int_t omp_get_thread_num() { return 0;}
+inline omp_int_t omp_get_max_threads() { return 1;}
+inline omp_int_t omp_get_num_threads() { return 1;}
+#endif
+
 
 namespace  NS_MMVII_FormalDerivative
 {
@@ -865,11 +874,20 @@ template <class TypeElem>
 const std::vector<std::vector<TypeElem> *> & cCoordinatorF<TypeElem>::EvalAndClear()
 {
     // Make the real hard stuff, compute the data, the depedancy ordering should make it coherent
-    for (auto & aF : mVReachedF)
+#ifdef _OPENMP
+#pragma omp parallel
+#endif
     {
-       aF->ComputeBuf(0,mNbInBuf);
-    }
+        size_t thread_num = omp_get_thread_num();
+        size_t num_threads = omp_get_num_threads();
+        size_t start = thread_num * mNbInBuf / num_threads;
+        size_t end = (thread_num + 1) * mNbInBuf / num_threads;
 
+        for (auto & aF : mVReachedF)
+        {
+            aF->ComputeBuf(start,end);
+        }
+    }
     mBufRes.clear();
     for (size_t aKLine=0 ; aKLine<mNbInBuf ;  aKLine++)
     {
@@ -915,7 +933,7 @@ void cCoordinatorF<TypeElem>::ShowStackFunc() const
     std::cout << "\n";
 }
 
-}; //   NS_MMVII_FormalDerivative
+} //   NS_MMVII_FormalDerivative
 
 #include "MMVII_FormDer_UnaryOp.h"
 #include "MMVII_FormDer_BinaryOp.h"
